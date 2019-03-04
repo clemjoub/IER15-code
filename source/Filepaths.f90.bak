@@ -1,11 +1,13 @@
 module filenames
 implicit none
 
-character(*), parameter:: path				=	'C:\Users\clement\Dropbox\JLSrevise3\JLSrevise3\Baseline\'
-character(*), parameter:: pathdatavsmodel	=	path//'Datavsmodel\'
-character(*), parameter:: pathoutput		=	path//'Output\'
-												
-character(*), parameter:: pathcounterf		=	'C:\Users\Clement\Documents\Projects\jointlaborstatus\counterfactuals\'
+character(*), parameter:: path			=	'/nas02/home/j/o/joubertc/JLSrevise3/'
+character(*), parameter:: pathdatavsmodel	=	path//'Datavsmodel/'
+character(*), parameter:: pathoutput		=	path//'output/'
+character(*), parameter:: pathinput		=	path//'input/'
+character(*), parameter:: pathcounterf		=	path
+character(*), parameter:: pathbigscratch	=	pathinput
+character(*), parameter:: pathsmallscratch	=	path
 
 !character(*), parameter:: path             =   '/home/joubert/JLS/'
 !character(*), parameter:: pathdatavsmodel	=	'/home/joubert/JLS/Datavsmodel/'

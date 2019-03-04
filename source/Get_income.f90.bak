@@ -20,10 +20,6 @@ double precision				tax											! Tax function
 
 !***********************************************************************************************************************************
 
-if (sameshocks==1) then
-    Eps_Ih=Eps_Fh
-    Eps_Iw=Eps_Fw
-endif
 
 if (age .ge. retirement) then
 	lnw_h=lny_min
@@ -91,10 +87,7 @@ contr_w=min(tope,w_w*tao_w)
 varcom_h=w_h*varcomrt
 varcom_w=w_w*varcomrt
 taxable_wages=w_h*(1-tao_h)*H_formal+w_w*(1-tao_w)*W_formal
-
-if (notax==1) taxable_wages=0
-tax_paid=tax(taxable_wages+r*a)
-y=w_h*(1-tao_h)+w_w*(1-tao_w)-tax_paid
+y=w_h*(1-tao_h)+w_w*(1-tao_w)-tax(taxable_wages+r*a)
 
 end subroutine get_income
 

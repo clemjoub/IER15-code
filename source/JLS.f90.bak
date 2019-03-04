@@ -41,42 +41,33 @@ call date_and_time(values=time_array_0)
 start_time = time_array_0 (5) * 3600 + time_array_0 (6) * 60 + time_array_0 (7) + 0.001 * time_array_0 (8)
 
 !! OPTIONS:
-lenovo=1
-kure=0
+lenovo=0
+kure=1
 nemeth		=0
 
 specification="ageprof"
 runsolution=1
-estimation=0
+estimation=1
 
 runcounterf	=1
-ncounterf=1
-allocate(counterset(ncounterf))
-counterset=(/1011/)
-
 runsimul	=1 
 rungradient	=0  
 runvarcov	=0
-verbose1=1
+counterfactual	=0
+
+verbose1=0
 verbose2=0
-checkprecision=0
-checknumemax=0
-quick=0
-
-ctag=""
+checkprecision	=0
+checknumemax	=0
+quick		=0
 
 
-
-GRADIENTLOOP: do gradient=0,size(counterset)-1,1
-
-
-counterfactual=counterset(gradient+1)
-
+GRADIENTLOOP: do gradient=0,0,1
 
 if (verbose2==1) then 
 write(charac,1000) gradient
 1000 format(I3)
-open(unit=323,file=pathoutput//adjustl(trim(ctag))//'sigma'//adjustl(trim(charac))//'.txt',position='rewind')
+open(unit=323,file=pathoutput//'sigma'//adjustl(trim(charac))//'.txt',position='rewind')
 endif
 
 !!														MAIN PROGRAM
@@ -95,17 +86,15 @@ endif
 
 !if (rungradient==1) call Bump
 
-if (runcounterf==1) call Counterfactuals
-
 call Grids
 do typ=1,ntypes
 call Constants(ntypes,typ,rho,sigma,betaa,r,raw_delta,delta,raw_h_switch_act,raw_w_switch_act,raw_h_switch_sect,raw_w_switch_sect, h_switch_act, w_switch_act,h_switch_sect, w_switch_sect, raison,raison2,c_mult,alpha)
 enddo
 
+if (runcounterf==1) call Counterfactuals
 
 !!	Draw Shocks
 idum=-1*abs(seedran1)
-
 allocate(evec(nEps*ndraws_eps*death))
 call get_eps(evec,evcv,neps,ndraws_eps,idum,death)
 allocate(emat(nEps,ndraws_eps,death))
@@ -115,7 +104,6 @@ deallocate(evec)
 !!	Draw States
 call draw_states
 !call get_intmat
-
 
 
 TYPELOOP:	do typ=ntypes,1,-1
@@ -293,7 +281,6 @@ TIMELOOP:	do age=startrec,endrec,-1
 				if (verbose1==1 .and. age>startwork) then
 				print*,'tag:',tag, 'gradient', gradient,'age:',age, 'type:',typ,':',rsq
 				endif
-				
 
 				!!	Output Emax, interpolated Emax and state variables
                 if (verbose2==1) then
@@ -339,7 +326,7 @@ if (verbose2==1) then
 endif
 
 if (runsolution==1.and.estimation==0) then
-    open(8987,file=pathoutput//adjustl(trim(ctag))//'theta_out_'//adjustl(trim(specification))//'.txt', position='rewind')
+    open(8987,file=pathoutput//'theta_out_'//specification//'.txt', position='rewind')
     write(8987,*) theta_out
     close(8987)
 endif
@@ -378,7 +365,6 @@ finish_time = time_array_1 (5) * 3600 + time_array_1 (6) * 60+ time_array_1 (7) 
 write (*,'(a4,a7,a10,f13.2,a10,f4.2,a6,5I4,a26,f10.5)') 'tag=',tag,'criterion=',criterion,'min R2',minval(rsq_out),'date:',time_array_1(1),time_array_1(2),time_array_1(3),time_array_1(5),time_array_1(6),'elapsed wall clock time:',finish_time - start_time    
 close(2000)
 
-print*,'counterfactual=',counterfactual
 
 
 

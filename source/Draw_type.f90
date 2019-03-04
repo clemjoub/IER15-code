@@ -37,4 +37,14 @@ do i=1,ntypes
 	endif
 enddo
 
+!Draw whether the household behaves myopically
+
+call ran1(idum,p,1)
+cut_off=probamyop(typp)
+if (p(1)<cut_off) then
+    betaa(typp)=0.0d-0
+    else
+    betaa(typp)=1/(1+rho(typp))
+endif
+
 endsubroutine draw_type

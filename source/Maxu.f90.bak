@@ -79,6 +79,11 @@ WORKLOOP: do ds=1,9
 		XP_Fwp=0
 		XP_Iwp=0
 		
+
+		!!Get income and asset holdings given labor choice
+		call get_income(Eps_Fh, Eps_Ih, Eps_Fw, Eps_Iw,a,edu_h,edu_w,cohort,XP_Fh_comp,XP_Ih_comp,XP_Fw_comp,XP_Iw_comp)	
+		holdings=a*(1+r)+y
+		
 		!!Update next period's experiences and lagged labor choice
 
 		if (ds==1 .or. ds==2 .or. ds==3) then
@@ -117,11 +122,6 @@ WORKLOOP: do ds=1,9
 			W_inactive=1
 			pastd_wp=3
 		endif
-
-		!!Get income and asset holdings given labor choice
-		call get_income(Eps_Fh, Eps_Ih, Eps_Fw, Eps_Iw,a,edu_h,edu_w,cohort,XP_Fh_comp,XP_Ih_comp,XP_Fw_comp,XP_Iw_comp)	
-		holdings=a*(1+r)+y
-		
 
 		!! Compute switching cost
 		if ((pastd_h==2 .and. (ds==1 .or. ds==2 .or. ds==3)).or. &

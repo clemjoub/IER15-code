@@ -21,7 +21,7 @@ integer:: nbedu, nbage,cohort
 i=1
 inan=1 !counts the number of NAN in moments list
 nan(:)=0
-open (unit=1431,file=pathoutput//adjustl(trim(ctag))//'Momentgroups.txt',position='rewind')
+open (unit=1431,file=pathoutput//'Momentgroups.txt',position='rewind')
 open (unit=10001, file=pathdatavsmodel//'mdata.txt',position='rewind')
 read(fmt=*,unit=10001) name
 
@@ -998,13 +998,13 @@ enddo
 
 if (lenovo==1) then 
 
-open(unit=1655, file=pathoutput//adjustl(trim(ctag))//'moments.txt',position='rewind')
+open(unit=1655, file=pathoutput//'moments.txt',position='rewind')
 do i=1,nmoments
 write(1655,*) m(i)
 enddo
 close(1655)
 
-open(unit=1654, file=pathoutput//adjustl(trim(ctag))//'criterion.txt',position='rewind')
+open(unit=1654, file=pathoutput//'criterion.txt',position='rewind')
 write(1654,*) ' m(i) ', ' mdata(i) ', ' weights(i) ', ' loss(1,i) ',' nbobs(i) '
 do i=1,nmoments
 write(1654,'(4f20.8,f9.1)') m(i), mdata(i), weights(i), loss(1,i),nbobs(i)

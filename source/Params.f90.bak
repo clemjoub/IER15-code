@@ -8,7 +8,7 @@ integer::						simuldum
 integer::                       lenovo,x201,kure,nemeth                                                                ! machine on which code is running 
 integer::                       runsolution,runcounterf,rungradient,estimation, runsimul,runvarcov, verbose1,verbose2, checkprecision, checknumemax    ! control which part of the code to run 
 integer::                       quick                                                                                   !runs the code with few states and decisions for speed
-character*20::                   specification,ctag                                                                           !suffix that identifies current specification
+character*20::                   specification                                                                           !suffix that identifies current specification
 
 !! Standard errors computation
 integer::						gradient	
@@ -45,8 +45,6 @@ integer          ::             totnumparms, numestparms
 integer          ::             maxparams       =   400
 !! Counterfactuals::
 double precision				counterfactual									! Toggle to signal counterfactual
-real,allocatable::              counterset(:)
-integer::                       ncounterf
 !! Mandatory Contributions
 double precision::				tao												! Mandatory contribution rate		
 double precision::				contr_h,contr_w									! Contributions to the pension accounts
@@ -103,7 +101,6 @@ double precision::              leisut_h        (ntypes)
 double precision::              leisut_w        (ntypes)
 double precision::              leiscomp        (ntypes)
 double precision::              NPB_Fh,NPB_Fw
-integer::                       sameshocks,notax                                      ! Force earnings shocks to be the same across sectors
 
 !! Type distribution
 integer::						typ												! Type index

@@ -68,7 +68,7 @@ call get_init
 
 !! Get emax interpolation parameters from txt file
 if (runsolution==0) then
-open(unit=98708,file=pathoutput//adjustl(trim(ctag))//'theta_out_'//adjustl(trim(specification))//'.txt',position='rewind')
+open(unit=98708,file=pathoutput//'theta_out_'//adjustl(trim(specification))//'.txt',position='rewind')
 read(fmt=*,unit=98708) theta_out
 close(98708)
 endif
@@ -366,20 +366,6 @@ last_year(h)=min(2041,first_year(h)+85-init_age(h))
 								simage			(h,i,year-1979+1)	=	age+1
 								simcohort		(h,i,year-1979+1)	=	cohort
                                 simtax          (h,i,year-1979)     =   besttax_paid
-                                
-                                simH_elig	    (h,i,year-1979+1)	=	bestH_elig
-							    simW_elig	    (h,i,year-1979+1)	=	bestW_elig
-							    simH_nonel	    (h,i,year-1979+1)	=	bestH_nonel
-							    simW_nonel	    (h,i,year-1979+1)	=	bestW_nonel
-							    simH_overMP	    (h,i,year-1979+1)	=	bestH_overMP
-							    simW_overMP	    (h,i,year-1979+1)	=	bestW_overMP
-							    simH_MPbenef    (h,i,year-1979+1)	=	bestH_MPbenef
-							    simW_MPbenef    (h,i,year-1979+1)	=	bestW_MPbenef
-							    simH_WPbenef    (h,i,year-1979+1)	=	bestH_WPbenef
-							    simW_WPbenef    (h,i,year-1979+1)	=	bestW_WPbenef
-							    simH_APS	    (h,i,year-1979+1)	=	bestAPS_h
-							    simW_APS	    (h,i,year-1979+1)	=	bestAPS_w
-
                                 
    		
 						        

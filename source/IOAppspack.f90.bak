@@ -432,14 +432,14 @@ allocate(savdum				(nsav,   			  ndraws_eps		))
 
 if (verbose1==1) then
 
-open (unit=93, file=pathoutput//adjustl(trim(ctag))//'Spec.txt',position='rewind')
+open (unit=93, file=pathoutput//'Spec.txt',position='rewind')
 write (93,*) 'path'           ,path
 write (93,*) 'pathoutput'     ,pathoutput
 write (93,*) 'pathdatavsmodel',pathdatavsmodel
 write (93,*) 'counterfactual', counterfactual
 close(93)
 
-open (unit=98,file=pathoutput//adjustl(trim(ctag))//'checkparams.txt',position='rewind')
+open (unit=98,file=pathoutput//'checkparams.txt',position='rewind')
 
 write(98,*),'totnumparms',totnumparms
 
